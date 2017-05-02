@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+     <meta charset="utf-8">
+     <title>Eine Webseite</title>
+  </head>
+  <body>
+     <label for="eingabe">
+       Ihr Name:
+       <input id="feld" name="eingabe" />
+     </label>
+     <button id="knopf" type="button" onclick="NameEinfg()">
+        Klick mich!
+     </button>
+     <div id="bereich"></div>
+     
+     <script>
+        function NameEinfg(){
+           if (document.getElementById('feld').value==''){
+              document.getElementById('bereich').innerHTML ="Hallo Unbekannter";}
+           else {
+              document.getElementById('bereich').innerHTML ="Hallo "+document.getElementById("feld").value;}
+           }
+       </script>
+  </body>
+</html>
