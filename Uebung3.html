@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="utf-8"></meta>
+ 	<title>Apple Aktie</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"> </script> 
+     
+   </head>
+ 
+ <body>
+ 	<h3>Apple Aktie, Veränderung vom 2.1.17 bis 31.1.17</h3>
+    
+ 	<div id="linechart" style="width:600px;height:400px"></div>
+    
+    <div id="barchart" style="width:600px;height:400px"></div>
+    
+    
+      <script type="text/javascript">
+     // Im Folgenden soll *LC* (*BC*) ausdrücken, dass es sich um Informationen zum Linechart (Barchart) handelt.
+     
+     
+     // *LC*   Globale Erklärung der Variablen für bessere Übersichtlichkeit
+     var tTief, tHoch, tEnd, data1, options1, chart1;
+      
+      // *BC*   Globale Erklärung der Variablen für bessere Übersichtlichkeit
+     var HVol, data2, options2, chart2;
+      
+      // *LC*  Angabe der Daten für Tagestief, -hoch und -endwert
+      tTief = [[gt(2017,01,02),109.30],[gt(2017,01,03),110.11],[gt(2017,01,04),110.53],[gt(2017,01,05),109.40],[gt(2017,01,06),109.80],[gt(2017,01,09),111.60],[gt(2017,01,10),111.80],[gt(2017,01,11),111.83],[gt(2017,01,12),110.94],[gt(2017,01,13),111.60],[gt(2017,01,16),111.72],[gt(2017,01,17),110.00],[gt(2017,01,18),112.00],[gt(2017,01,19),111.99],[gt(2017,01,20),112.14],[gt(2017,01,23),111.04],[gt(2017,01,24),110.90],[gt(2017,01,25),111.70],[gt(2017,01,26),113.20],[gt(2017,01,27),113.70],[gt(2017,01,30),112.90],[gt(2017,01,31),111.78]];
+      tHoch = [[gt(2017,01,02),110.80],[gt(2017,01,03),112.09],[gt(2017,01,04),111.70],[gt(2017,01,05),110.73],[gt(2017,01,06),112.00],[gt(2017,01,09),113.10],[gt(2017,01,10),112.90],[gt(2017,01,11),113.86],[gt(2017,01,12),112.6],[gt(2017,01,13),112.50],[gt(2017,01,16),112.45],[gt(2017,01,17),112.29],[gt(2017,01,18),112.70],[gt(2017,01,19),113.09],[gt(2017,01,20),113.10],[gt(2017,01,23),112.50],[gt(2017,01,24),111.73],[gt(2017,01,25),113.65],[gt(2017,01,26),114.38],[gt(2017,01,27),114.46],[gt(2017,01,30),113.99],[gt(2017,01,31),113.50]];
+      tEnd = [[gt(2017,01,02),110.30],[gt(2017,01,03),110.68],[gt(2017,01,04),111.03],[gt(2017,01,05),110.00],[gt(2017,01,06),111.61],[gt(2017,01,09),112.46],[gt(2017,01,10),112.75],[gt(2017,01,11),112.17],[gt(2017,01,12),111.76],[gt(2017,01,13),111.76],[gt(2017,01,16),112.00],[gt(2017,01,17),112.08],[gt(2017,01,18),112.35],[gt(2017,01,19),112.71],[gt(2017,01,20),112.14],[gt(2017,01,23),111.74],[gt(2017,01,24),111.51],[gt(2017,01,25),113.65],[gt(2017,01,26),114.00],[gt(2017,01,27),114.03],[gt(2017,01,30),113.35],[gt(2017,01,31),111.91]];
+      
+      // *BC*  Angabe der Daten für Handelsvolumen
+      HVol = [[gt(2017,01,02),2330417],[gt(2017,01,03),882614],[gt(2017,01,04),449615],[gt(2017,01,05),746100],[gt(2017,01,06),700163],[gt(2017,01,09),1297576],[gt(2017,01,10),1691504],[gt(2017,01,11),1521071],[gt(2017,01,12),1073743],[gt(2017,01,13),1149538],[gt(2017,01,16),861942],[gt(2017,01,17),848050],[gt(2017,01,18),528968],[gt(2017,01,19),778900],[gt(2017,01,20),1610841],[gt(2017,01,23),366744],[gt(2017,01,24),734456],[gt(2017,01,25),1221101],[gt(2017,01,26),1302214],[gt(2017,01,27),739897],[gt(2017,01,30),1268146],[gt(2017,01,31),988174]];
+      
+      
+      // *LC*   Daten werden zusammengefasst in einer Variable, damit plot sie aufrufen kann
+      data1 =[ {data: tTief, color: "red", label: "Tagestief"},
+        	   {data: tHoch, color: "green", label: "Tageshoch"},
+               {data: tEnd, color: "yellow", label: "Tagesendwert"}];
+              
+      // *BC*   Daten werden zusammengefasst in einer Variable, damit plot sie aufrufen kann
+      data2 =[ {data: HVol, color: "blue", label: "Handelsvolumen"}];
+      
+      // *LC*   Angabe von Veränderungen am Graphen
+        options1={
+        xaxis:  {mode: "time", tickSize: [5, "day"]},
+        legend: {noColumns: 0, position: "nw"}
+      		   };
+      
+      // *BC*   Angabe von Veränderungen am Graphen
+      options2={
+        series: {bars: {show: true}},
+		xaxis: {mode: "time",tickSize: [5, "day"]},
+        legend: {noColumns: 0, position: "nw"}        
+        };
+            
+   // *LC*   Plottet Linechart mit zuvor definierten Daten und Optionen
+   $(document).ready(function(){
+    chart1 = $.plot($('#linechart'),data1, options1);
+	});
+    
+    // *BC*   Plottet Barchart mit zuvor definierten Daten und Optionen
+   $(document).ready(function(){
+    chart2 = $.plot($('#barchart'),data2, options2);
+	});
+    
+    // Gibt Zeit in js-Format aus
+    function gt(year,month,day) {
+            return new Date(year,month-1,day).getTime();
+        }
+    </script>
+ </body>
+ </html>
