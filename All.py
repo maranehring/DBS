@@ -16,8 +16,10 @@ for row in reader:
 from One import func1
 from Two import func2
 from Three import func3
+from Four import func4
 
 def main():
+    func4()
     func1()
     func2()
     func3()
