@@ -1,6 +1,6 @@
 import csv
 def func2():
-    with open('newfile.csv','r') as inp, open('first_edit.csv', 'w') as out:
+    with open('first_file.csv','r') as inp, open('second_file.csv', 'w') as out:
         writer = csv.writer(out, delimiter=';', lineterminator='\n')
         stuff = csv.reader(inp, delimiter=';')
 
