@@ -1,6 +1,6 @@
 import csv
 def func1():
-    with open('american-election-tweets.csv','r') as inp, open('newfile.csv', 'w') as out:
+    with open('third_file.csv','r') as inp, open('last_file.csv', 'w') as out:
         writer = csv.writer(out, delimiter=';', lineterminator='\n')
         stuff = csv.reader(inp, delimiter=';')
 
