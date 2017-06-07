@@ -1,8 +1,8 @@
-import csv
+import unicodecsv
 def func3():
     with open('second_file.csv', 'r') as inp, open('third_file.csv', 'w') as out:
-        writer = csv.writer(out, delimiter=';', lineterminator='\n')
-        stuff = csv.reader(inp, delimiter=';')
+        writer = unicodecsv.writer(out, delimiter=';', lineterminator='\n', encoding='ISO-8859-1')
+        stuff = unicodecsv.reader(inp, delimiter=';', encoding='ISO-8859-1')
         special = ''
         lines = [l for l in stuff]
         j=0
@@ -13,6 +13,6 @@ def func3():
                 z=y.strip('T') #Entferne "T" aus der "Zeit"-Spalte
                 special+=z 
             lines[j][4] = special #Definiere die "Zeit"-Spalte als special
-            special='' #Mache "special" wieder leer für die nächste Iteration
+            special='' #Mache "special" wieder leer für die naechste Iteration
             j += 1
         writer.writerows(lines)
