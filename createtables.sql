@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS TWEET (
                 is_retweet BOOLEAN NOT NULL,
                 has_hashtag BOOLEAN NOT NULL,
                 person BOOLEAN,
-                Ti_ID INTEGER NOT NULL,
+                Ti_ID BIGINT NOT NULL,
                 PRIMARY KEY (ID), 
                 FOREIGN KEY(Ti_ID) REFERENCES TIME (Ti_ID),
                 FOREIGN KEY(person) REFERENCES CANDIDATE (Nr)
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS CANDIDATE (
 
 
 CREATE TABLE IF NOT EXISTS TIME (
-                Ti_ID INTEGER,
+                Ti_ID BIGINT,
                 Date DATE,
                 t_of_day TIME,
                 PRIMARY KEY (Ti_ID)           
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS uses(
 
 CREATE TABLE IF NOT EXISTS is_used_at(
                 text TEXT,
-                Ti_ID INTEGER,
+                Ti_ID BIGINT,
                 PRIMARY KEY (text, Ti_ID),  
                 FOREIGN KEY(text) REFERENCES HASHTAG (text),
                 FOREIGN KEY(Ti_ID) REFERENCES TIME (Ti_ID)
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS is_used_at(
 
 CREATE TABLE IF NOT EXISTS is_used_at2(
                 pairText TEXT,
-                Ti_ID INTEGER,
+                Ti_ID BIGINT,
                 PRIMARY KEY (pairText, Ti_ID),  
                 FOREIGN KEY(pairText) REFERENCES HASHTAGPAIR (pairText),
                 FOREIGN KEY(Ti_ID) REFERENCES TIME (Ti_ID)
