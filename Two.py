@@ -1,8 +1,8 @@
-import csv
+import unicodecsv
 def func2():
     with open('first_file.csv','r') as inp, open('second_file.csv', 'w') as out:
-        writer = csv.writer(out, delimiter=';', lineterminator='\n')
-        stuff = csv.reader(inp, delimiter=';')
+        writer = unicodecsv.writer(out, delimiter=';', lineterminator='\n', encoding='ISO-8859-1')
+        stuff = unicodecsv.reader(inp, delimiter=';', encoding='ISO-8859-1')
 
         lines = [l for l in stuff]
         i = 0
@@ -14,5 +14,4 @@ def func2():
 
             i = i + 1
         writer.writerows(lines)
-
 
